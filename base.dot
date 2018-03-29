@@ -1,0 +1,16 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_eip.testtfi" [label = "aws_eip.testtfi", shape = "box"]
+		"[root] aws_instance.testtfi" [label = "aws_instance.testtfi", shape = "box"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] aws_eip.testtfi" -> "[root] aws_instance.testtfi"
+		"[root] aws_instance.testtfi" -> "[root] provider.aws"
+		"[root] meta.count-boundary (count boundary fixup)" -> "[root] aws_eip.testtfi"
+		"[root] provider.aws (close)" -> "[root] aws_eip.testtfi"
+		"[root] root" -> "[root] meta.count-boundary (count boundary fixup)"
+		"[root] root" -> "[root] provider.aws (close)"
+	}
+}
+
